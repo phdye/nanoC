@@ -2,6 +2,7 @@
 #include <sstream>
 #include <iostream>
 #include <string>
+#include <cstring>
 #include "parser/parser.h"
 #include "semantic/name_analysis.h"
 #include "semantic/type_analysis.h"
