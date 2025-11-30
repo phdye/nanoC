@@ -1,5 +1,5 @@
 /*
-Semantic error: Variable 'x' is not declared at line 3 column 5
+Semantic error: Variable 'x' is not declared at line 5 column 6
 */
 int main() {
     x = 10;

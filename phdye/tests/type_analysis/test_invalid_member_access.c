@@ -1,5 +1,5 @@
 /*
-Semantic error: Cannot access member of non-struct type at line 4 column 5
+Semantic error: Left operand of '.' operator must be a structure but found 'int' at line 6 column 7
 */
 int main() {
     int x;

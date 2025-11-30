@@ -1,5 +1,5 @@
 /*
-Semantic error: Function 'foo' was previously declared with conflicting type at line 3 column 5
+Semantic error: Conflicting type in argument 'x' in function 'foo' at line 5 column 4
 */
 int foo(int x);
 int foo(char x) {

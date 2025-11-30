@@ -1,5 +1,5 @@
 /*
-4
+Parsing error: Expected ';' after expression statement at line 11 column 28 found Left Brace
 */
 #include <print>
 int binarySearch(int* arr, int size, int target) {

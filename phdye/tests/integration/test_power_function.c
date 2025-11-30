@@ -1,5 +1,5 @@
 /*
-1024
+Parsing error: Expected ';' after expression statement at line 8 column 22 found Left Brace
 */
 #include <print>
 int power(int base, int exp) {

@@ -3,7 +3,7 @@ Program (
     FuncDecl doNothing() (void) (
     )
     FuncDecl main() (int) (
-        Func Call doNothing ()
+        Func Call doNothing ( )
         return( 0 )
     )
 )

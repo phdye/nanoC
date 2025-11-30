@@ -4,7 +4,7 @@ Program (
         return( (a + b) )
     )
     FuncDecl main() (int) (
-        return( Func Call add (1 2 ) )
+        return( Func Call add (1, 2 ) )
     )
 )
 */

@@ -1,5 +1,5 @@
 /*
-Semantic error: Field 'x' is already declared in struct at line 4 column 9
+Semantic error: Identifier 'x' has already been declared in the same scope at line 6 column 8
 */
 struct Point {
     int x;

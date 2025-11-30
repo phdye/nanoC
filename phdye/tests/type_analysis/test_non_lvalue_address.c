@@ -1,5 +1,5 @@
 /*
-Semantic error: Cannot take address of non-lvalue at line 4 column 9
+Semantic error: Cannot reference non-lvalue expression at line 6 column 10
 */
 int main() {
     int* p;

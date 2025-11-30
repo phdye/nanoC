@@ -4,7 +4,7 @@ Program (
         return( 42 )
     )
     FuncDecl main() (int) (
-        return( Func Call foo () )
+        return( Func Call foo ( ) )
     )
 )
 */

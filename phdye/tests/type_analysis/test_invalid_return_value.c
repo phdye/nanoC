@@ -1,5 +1,5 @@
 /*
-Semantic error: Incompatible return type at line 2 column 5
+Semantic error: Return type mismatch: expected 'void', but found 'int' at line 5 column 11
 */
 void foo() {
     return 42;

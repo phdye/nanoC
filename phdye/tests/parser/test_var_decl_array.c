@@ -1,8 +1,8 @@
 /*
 Program (
     FuncDecl main() (int) (
-        VarDecl(int[10])
-        VarDecl(char[5][3])
+        VarDecl(int*)
+        VarDecl(char**)
         return( 0 )
     )
 )

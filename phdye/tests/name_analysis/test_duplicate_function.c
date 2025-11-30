@@ -1,5 +1,5 @@
 /*
-Semantic error: Function 'foo' is already declared at line 6 column 5
+Semantic error: Identifier 'foo' has already been declared in the same scope at line 7 column 4
 */
 int foo() {
     return 1;

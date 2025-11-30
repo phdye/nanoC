@@ -1,5 +1,5 @@
 /*
-Semantic error: Field 'z' does not exist in struct 'Point' at line 7 column 5
+Semantic error: Struct 'Point' has no member named 'z' at line 9 column 7
 */
 struct Point {
     int x;

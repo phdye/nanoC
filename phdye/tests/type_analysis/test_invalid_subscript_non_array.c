@@ -1,5 +1,5 @@
 /*
-Semantic error: Cannot subscript non-array/pointer type at line 4 column 5
+Semantic error: Array subscript operator requires an array or pointer type but found 'int' at line 6 column 7
 */
 int main() {
     int x;

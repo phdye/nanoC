@@ -3,7 +3,7 @@ Program (
     FuncDecl main() (int) (
         VarDecl(int*)
         VarDecl(int)
-        (x = *p)
+        (x = *(p))
         return( 0 )
     )
 )

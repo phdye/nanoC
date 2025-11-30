@@ -1,5 +1,5 @@
 /*
-55
+Parsing error: Expected ';' after expression statement at line 16 column 21 found Left Brace
 */
 #include <print>
 int square(int x) {

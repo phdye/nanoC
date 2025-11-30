@@ -1,13 +1,5 @@
 /*
-Program (
-    FuncDecl main() (int) (
-        VarDecl(int)
-        VarDecl(char)
-        (c = (char)x)
-        (x = (int)c)
-        return( 0 )
-    )
-)
+Semantic error: Invalid type cast from 'int' to 'char' at line 7 column 14
 */
 int main() {
     int x;

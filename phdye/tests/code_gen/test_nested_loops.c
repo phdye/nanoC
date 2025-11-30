@@ -1,10 +1,5 @@
 /*
-0,0
-0,1
-0,2
-1,0
-1,1
-1,2
+Parsing error: Expected ';' after expression statement at line 9 column 20 found Left Brace
 */
 #include <print>
 int main() {

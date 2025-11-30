@@ -1,5 +1,5 @@
 /*
-Semantic error: Array index must be of integer type at line 5 column 5
+Semantic error: Array index must be an integer type but found 'char*' at line 7 column 9
 */
 int main() {
     int arr[5];
