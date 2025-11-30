@@ -5,6 +5,7 @@
 #ifndef COMPILER_AST_H
 #define COMPILER_AST_H
 
+#include <memory>
 #include <variant>
 #include <vector>
 #include <string>

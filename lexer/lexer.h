@@ -5,6 +5,7 @@
 #ifndef COMPILER_LEXER_H
 #define COMPILER_LEXER_H
 
+#include <memory>
 #include "token.h"
 #include "lexing_exception.h"
 
