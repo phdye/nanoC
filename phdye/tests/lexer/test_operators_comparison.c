@@ -1,0 +1,11 @@
+/*
+==
+!=
+<
+>
+<=
+>=
+*/
+
+// Test comparison operators
+== != < > <= >=
