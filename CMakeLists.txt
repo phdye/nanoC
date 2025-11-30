@@ -18,12 +18,14 @@ else()
     message(FATAL_ERROR "Unsupported platform")
 endif()
 
+
 # Copy platform-specific print.c at configure time
 configure_file(
     ${CMAKE_SOURCE_DIR}/std/print_${PLATFORM_NAME}.c
     ${CMAKE_SOURCE_DIR}/std/print.c
     COPYONLY
 )
+
 
 add_executable(compiler main.cpp
         lexer/lexer.cpp
