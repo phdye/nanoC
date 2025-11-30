@@ -1,5 +1,5 @@
 /*
-Semantic error: Struct 'Point' is already declared at line 6 column 8
+Semantic error: Struct 'Point' has already been declared
 */
 struct Point {
     int x;

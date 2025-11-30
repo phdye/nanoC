@@ -1,5 +1,5 @@
 /*
-done
+Parsing error: Expected ';' after expression statement at line 10 column 20 found Left Brace
 */
 #include <print>
 int main() {

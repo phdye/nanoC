@@ -1,5 +1,5 @@
 /*
-Semantic error: Cannot assign to non-lvalue at line 3 column 5
+Semantic error: lvalue required as left operand of assignment at line 5 column 8
 */
 int main() {
     5 = 10;

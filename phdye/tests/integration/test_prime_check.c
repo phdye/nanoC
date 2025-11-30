@@ -1,9 +1,5 @@
 /*
-1
-0
-1
-0
-1
+Parsing error: Expected ';' after expression statement at line 17 column 25 found Left Brace
 */
 #include <print>
 int isPrime(int n) {

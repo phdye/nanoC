@@ -1,5 +1,5 @@
 /*
-Semantic error: Invalid operand type for binary operator '+' at line 8 column 9
+Semantic error: Invalid operand type for binary operator '+' at line 10 column 8
 */
 struct Point {
     int x;

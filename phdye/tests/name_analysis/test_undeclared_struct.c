@@ -1,5 +1,5 @@
 /*
-Semantic error: Struct 'UndefinedStruct' is not declared at line 3 column 12
+Semantic error: Type struct 'UndefinedStruct' is not declared at line 5 column 11
 */
 int main() {
     struct UndefinedStruct s;

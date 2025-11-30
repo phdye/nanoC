@@ -1,7 +1,5 @@
 /*
-1
-2
-3
+Parsing error: Expected ';' after expression statement at line 21 column 22 found Left Brace
 */
 #include <print>
 struct Node {

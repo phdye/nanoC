@@ -1,9 +1,6 @@
 /*
 Program (
-    StructDecl Point (
-        VarDecl(int)
-        VarDecl(int)
-    )
+    StructDecl Point (VarDecl(int), VarDecl(int))
     FuncDecl main() (int) (
         return( 0 )
     )

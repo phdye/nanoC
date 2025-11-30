@@ -1,14 +1,16 @@
 /*
 Program (
     FuncDecl main() (int) (
-        If ((1)) (
-            If ((0)) (
+        If (1) (
+            If (0) (
                 return( 1 )
             )
             Else (
                 return( 2 )
             )
+
         )
+
         return( 0 )
     )
 )

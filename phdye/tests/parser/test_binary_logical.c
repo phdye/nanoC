@@ -1,7 +1,7 @@
 /*
 Program (
     FuncDecl main() (int) (
-        return( ((1 && 0) || 1) )
+        return( (1 && (0 || 1)) )
     )
 )
 */

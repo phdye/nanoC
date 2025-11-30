@@ -3,7 +3,7 @@ Program (
     FuncDecl empty() (void) (
     )
     FuncDecl main() (int) (
-        Func Call empty ()
+        Func Call empty ( )
         return( 0 )
     )
 )

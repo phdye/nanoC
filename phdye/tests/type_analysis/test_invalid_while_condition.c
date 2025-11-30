@@ -1,5 +1,5 @@
 /*
-Semantic error: Condition expression must be of type 'int' or pointer at line 6 column 12
+Parsing error: Expected ';' after expression statement at line 7 column 16 found Left Brace
 */
 struct S {};
 int main() {

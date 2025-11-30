@@ -1,5 +1,5 @@
 /*
-Parsing error: Expected ')'
+Parsing error: Expected closing parenthesis at line 5 column 12 found Left Brace
 */
 int main() {
     if (1 {

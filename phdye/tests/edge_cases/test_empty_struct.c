@@ -1,7 +1,6 @@
 /*
 Program (
-    StructDecl Empty (
-    )
+    StructDecl Empty ()
     FuncDecl main() (int) (
         VarDecl(struct Empty)
         return( 0 )

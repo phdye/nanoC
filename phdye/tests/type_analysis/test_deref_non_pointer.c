@@ -1,5 +1,5 @@
 /*
-Semantic error: Cannot dereference non-pointer type at line 4 column 9
+Semantic error: Dereferencing non-pointer 'int' at line 6 column 10
 */
 int main() {
     int x;

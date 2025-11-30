@@ -1,5 +1,5 @@
 /*
-Semantic error: Invalid operand type for binary operator '*' at line 5 column 9
+Semantic error: Invalid operand type for binary operator '*' at line 7 column 8
 */
 int main() {
     int* p;

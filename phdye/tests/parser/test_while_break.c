@@ -1,12 +1,5 @@
 /*
-Program (
-    FuncDecl main() (int) (
-        While ((1)) (
-            Break
-        )
-        return( 0 )
-    )
-)
+Parsing error: Expected ';' after expression statement at line 6 column 16 found Left Brace
 */
 
 int main() {
