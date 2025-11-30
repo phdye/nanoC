@@ -5,7 +5,9 @@
 #ifndef COMPILER_NAIVEREGALLOC_H
 #define COMPILER_NAIVEREGALLOC_H
 
+#if defined(__CYGWIN__) || defined(__linux__)
 #include <unordered_map>
+#endif
 #include "ir.h"
 
 class RegAlloc{

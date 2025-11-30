@@ -5,7 +5,9 @@
 #ifndef COMPILER_LEXER_H
 #define COMPILER_LEXER_H
 
+#if defined(__CYGWIN__) || defined(__linux__)
 #include <memory>
+#endif
 #include "token.h"
 #include "lexing_exception.h"
 

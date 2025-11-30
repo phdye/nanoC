@@ -5,7 +5,9 @@
 #ifndef COMPILER_AST_H
 #define COMPILER_AST_H
 
+#if defined(__CYGWIN__) || defined(__linux__)
 #include <memory>
+#endif
 #include <variant>
 #include <vector>
 #include <string>

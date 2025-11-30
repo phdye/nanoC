@@ -6,7 +6,9 @@
 #define COMPILER_CODE_GEN_H
 
 #include <fstream>
+#if defined(__CYGWIN__) || defined(__linux__)
 #include <unordered_map>
+#endif
 #include "../ir/ir.h"
 
 class CodeGen {

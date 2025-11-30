@@ -2,7 +2,9 @@
 #include <sstream>
 #include <iostream>
 #include <string>
+#if defined(__CYGWIN__) || defined(__linux__)
 #include <cstring>
+#endif
 #include "parser/parser.h"
 #include "semantic/name_analysis.h"
 #include "semantic/type_analysis.h"
