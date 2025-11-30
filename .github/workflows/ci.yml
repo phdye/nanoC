@@ -2,8 +2,10 @@ name: CI
 
 on:
   push:
-    branches: [ main, master, develop ]
+    # Fire on push to any branch
+    branches: [ '**' ]
   pull_request:
+    # PRs targeting these branches
     branches: [ main, master, develop ]
 
 jobs:
@@ -30,6 +32,12 @@ jobs:
       run: |
         cd cmake-build-debug
         make
+    
+    - name: Verify platform detection
+      run: |
+        echo "Checking generated print.c:"
+        cat std/print.c | head -20
+        echo "Should contain Linux syscalls (mov rax, 1) not macOS (0x2000004)"
     
     - name: Run tests
       run: |
@@ -59,6 +67,12 @@ jobs:
       run: |
         cd cmake-build-debug
         make
+    
+    - name: Verify platform detection
+      run: |
+        echo "Checking generated print.c:"
+        cat std/print.c | head -20
+        echo "Should contain macOS syscalls (0x2000004) not Linux (mov rax, 1)"
     
     - name: Run tests
       run: |
