@@ -22,7 +22,7 @@ run_tests() {
         dir_total_tests=$((dir_total_tests + 1))
 
         # Extract the expected AST from the comment at the beginning of the file
-        expected_ast=$(sed -n '/\/\*/,/\*\//p' "$test_file" | grep -v '\/\*\|\*\/')
+        expected_ast=$(sed -n '/\/\*/,/\*\//p' "$test_file" | grep -v '/\*\|\*/')
 
         # Determine the compiler command based on the directory name
         if [ "$test_dir" = "ast" ]; then
