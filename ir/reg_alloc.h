@@ -5,6 +5,7 @@
 #ifndef COMPILER_NAIVEREGALLOC_H
 #define COMPILER_NAIVEREGALLOC_H
 
+#include <unordered_map>
 #include "ir.h"
 
 class RegAlloc{
