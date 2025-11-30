@@ -1,12 +1,19 @@
 #!/bin/bash
 
+# Bash 3.2 compatible test runner
+# Exit on any error in pipelines
+set -o pipefail
+
 # ANSI color codes
 GREEN='\033[0;32m'
 RED='\033[0;31m'
 NC='\033[0m' # No Color
 
-# Arrays to store results
-declare -A results
+# Simple arrays for storing results (bash 3.2 compatible)
+result_names=()
+result_passed=()
+result_total=()
+
 total_passed=0
 total_tests=0
 
@@ -17,7 +24,7 @@ detect_platform() {
         Linux*)     echo "Linux";;
         Darwin*)    echo "Darwin";;
         CYGWIN*)    echo "Cygwin";;
-        MINGW*)     echo="MinGW";;
+        MINGW*)     echo "MinGW";;
         *)          echo "Unknown"
     esac
 }
@@ -28,7 +35,7 @@ PLATFORM=$(detect_platform)
 if [ "$PLATFORM" = "Darwin" ]; then
     # macOS
     NASM_FORMAT="macho64"
-    LD_FLAGS="-macosx_version_min 10.7 -no_pie"
+    LD_FLAGS="-macos_version_min 10.7 -no_pie"
     ARCH_CMD="arch -x86_64"
 else
     # Linux/Cygwin/MinGW
@@ -59,18 +66,11 @@ run_tests() {
         else
             actual_ast=$(../cmake-build-debug/compiler "$test_file" 2>&1)
             if [ "$test_dir" = "code_gen" ]; then
-              if [ -f output.asm ] ; then
-                # echo " - ok   : '${test_file}'"
-                nasm -f $NASM_FORMAT output.asm -o output.o
-                ld -o ./output ./output.o $LD_FLAGS
-                chmod +x ./output
-                actual_ast=$($ARCH_CMD ./output 2>&1)
-                rm -f ./output ./output.asm ./output.o
-                #echo "$actual_ast"
-                #echo "$expected_ast"
-              # else
-                # echo " * BAD  : '${test_file}'"
-              fi
+              nasm -f $NASM_FORMAT ./output.asm -o ./output.o 2>&1
+              ld -o ./output ./output.o $LD_FLAGS 2>&1
+              chmod +x ./output
+              actual_ast=$($ARCH_CMD ./output 2>&1)
+              rm -f ./output ./output.asm ./output.o
             fi
         fi
 
@@ -82,8 +82,11 @@ run_tests() {
         fi
     done
 
-    # Store results
-    results[$test_dir]="$dir_passed_tests/$dir_total_tests"
+    # Store results in indexed arrays (bash 3.2 compatible)
+    result_names+=("$test_dir")
+    result_passed+=("$dir_passed_tests")
+    result_total+=("$dir_total_tests")
+    
     total_passed=$((total_passed + dir_passed_tests))
     total_tests=$((total_tests + dir_total_tests))
 
@@ -105,24 +108,33 @@ for dir in "${test_dirs[@]}"; do
     run_tests "$dir"
 done
 
-# After running all tests, print summary table and overall summary
+# After running all tests, print summary table
 echo -e "\nSummary Table:"
 echo "--------------------"
 printf "%-15s | %s\n" "Directory" "Passed/Total"
 echo "--------------------"
-for dir in "${test_dirs[@]}"; do
-    IFS='/' read -r passed total <<< "${results[$dir]}"
+
+# Print results from indexed arrays
+for i in "${!result_names[@]}"; do
+    local passed="${result_passed[$i]}"
+    local total="${result_total[$i]}"
+    local name="${result_names[$i]}"
+    
     if [ "$passed" -eq "$total" ]; then
-        printf "%-15s | ${GREEN}%s${NC}\n" "$dir" "${results[$dir]}"
+        printf "%-15s | ${GREEN}%s/%s${NC}\n" "$name" "$passed" "$total"
     else
-        printf "%-15s | ${RED}%s${NC}\n" "$dir" "${results[$dir]}"
+        printf "%-15s | ${RED}%s/%s${NC}\n" "$name" "$passed" "$total"
     fi
 done
 echo "--------------------"
 
-# Color the overall result
+# Determine exit code based on test results
 if [ "$total_passed" -eq "$total_tests" ]; then
     echo -e "\nOverall: ${GREEN}$total_passed/$total_tests${NC}"
+    exit 0
 else
     echo -e "\nOverall: ${RED}$total_passed/$total_tests${NC}"
+    echo ""
+    echo "TESTS FAILED: $((total_tests - total_passed)) of $total_tests tests failed"
+    exit 1
 fi
