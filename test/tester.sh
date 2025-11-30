@@ -33,9 +33,9 @@ PLATFORM=$(detect_platform)
 
 # Set platform-specific build commands
 if [ "$PLATFORM" = "Darwin" ]; then
-    # macOS
+    # macOS - updated to 11.0 to avoid deprecation warnings
     NASM_FORMAT="macho64"
-    LD_FLAGS="-macos_version_min 10.7 -no_pie"
+    LD_FLAGS="-macos_version_min 11.0 -no_pie"
     ARCH_CMD="arch -x86_64"
 else
     # Linux/Cygwin/MinGW
@@ -114,11 +114,11 @@ echo "--------------------"
 printf "%-15s | %s\n" "Directory" "Passed/Total"
 echo "--------------------"
 
-# Print results from indexed arrays
+# Print results from indexed arrays (no 'local' outside of functions!)
 for i in "${!result_names[@]}"; do
-    local passed="${result_passed[$i]}"
-    local total="${result_total[$i]}"
-    local name="${result_names[$i]}"
+    passed="${result_passed[$i]}"
+    total="${result_total[$i]}"
+    name="${result_names[$i]}"
     
     if [ "$passed" -eq "$total" ]; then
         printf "%-15s | ${GREEN}%s/%s${NC}\n" "$name" "$passed" "$total"
