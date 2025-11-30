@@ -6,6 +6,7 @@
 #define COMPILER_CODE_GEN_H
 
 #include <fstream>
+#include <unordered_map>
 #include "../ir/ir.h"
 
 class CodeGen {
