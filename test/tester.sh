@@ -1,4 +1,4 @@
-#!/bin/zsh
+#!/bin/bash
 
 # ANSI color codes
 GREEN='\033[0;32m'
@@ -9,6 +9,33 @@ NC='\033[0m' # No Color
 declare -A results
 total_passed=0
 total_tests=0
+
+# Detect platform
+detect_platform() {
+    local uname_out="$(uname -s)"
+    case "${uname_out}" in
+        Linux*)     echo "Linux";;
+        Darwin*)    echo "Darwin";;
+        CYGWIN*)    echo "Cygwin";;
+        MINGW*)     echo="MinGW";;
+        *)          echo "Unknown"
+    esac
+}
+
+PLATFORM=$(detect_platform)
+
+# Set platform-specific build commands
+if [ "$PLATFORM" = "Darwin" ]; then
+    # macOS
+    NASM_FORMAT="macho64"
+    LD_FLAGS="-macosx_version_min 10.7 -no_pie"
+    ARCH_CMD="arch -x86_64"
+else
+    # Linux/Cygwin/MinGW
+    NASM_FORMAT="elf64"
+    LD_FLAGS="-no-pie"
+    ARCH_CMD=""
+fi
 
 # Function to run tests in a given directory
 run_tests() {
@@ -32,13 +59,18 @@ run_tests() {
         else
             actual_ast=$(../cmake-build-debug/compiler "$test_file" 2>&1)
             if [ "$test_dir" = "code_gen" ]; then
-              nasm -f macho64 ./output.asm -o ./output.o
-              ld -o ./output ./output.o -macosx_version_min 10.7 -no_pie
-              chmod +x ./output
-              actual_ast=$(arch -x86_64 ./output 2>&1)
-              rm -f ./output ./output.asm ./output.o
-              #echo "$actual_ast"
-              #echo "$expected_ast"
+              if [ -f output.asm ] ; then
+                # echo " - ok   : '${test_file}'"
+                nasm -f $NASM_FORMAT output.asm -o output.o
+                ld -o ./output ./output.o $LD_FLAGS
+                chmod +x ./output
+                actual_ast=$($ARCH_CMD ./output 2>&1)
+                rm -f ./output ./output.asm ./output.o
+                #echo "$actual_ast"
+                #echo "$expected_ast"
+              # else
+                # echo " * BAD  : '${test_file}'"
+              fi
             fi
         fi
 

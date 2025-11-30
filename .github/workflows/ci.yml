@@ -1,0 +1,67 @@
+name: CI
+
+on:
+  push:
+    branches: [ main, master, develop ]
+  pull_request:
+    branches: [ main, master, develop ]
+
+jobs:
+  build-linux:
+    name: Linux x86_64
+    runs-on: ubuntu-latest
+    
+    steps:
+    - name: Checkout
+      uses: actions/checkout@v4
+    
+    - name: Install dependencies
+      run: |
+        sudo apt-get update
+        sudo apt-get install -y cmake nasm
+    
+    - name: Configure
+      run: |
+        mkdir -p cmake-build-debug
+        cd cmake-build-debug
+        cmake ..
+    
+    - name: Build
+      run: |
+        cd cmake-build-debug
+        make
+    
+    - name: Run tests
+      run: |
+        cd test
+        chmod +x tester.sh
+        ./tester.sh
+
+  build-macos:
+    name: macOS x86_64
+    runs-on: macos-13
+    
+    steps:
+    - name: Checkout
+      uses: actions/checkout@v4
+    
+    - name: Install dependencies
+      run: |
+        brew install nasm
+    
+    - name: Configure
+      run: |
+        mkdir -p cmake-build-debug
+        cd cmake-build-debug
+        cmake ..
+    
+    - name: Build
+      run: |
+        cd cmake-build-debug
+        make
+    
+    - name: Run tests
+      run: |
+        cd test
+        chmod +x tester.sh
+        ./tester.sh

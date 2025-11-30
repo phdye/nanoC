@@ -1,5 +1,5 @@
-// Linux/Cygwin-specific print functions for nanoC
-// Uses Linux syscall numbers
+// macOS-specific print functions for nanoC
+// Uses macOS syscall numbers (BSD-style with 0x2000000 offset)
 
 void print_c(char c){
     emit_asm("sub rsp, 8");
@@ -7,7 +7,7 @@ void print_c(char c){
     emit_asm("mov rsi, rsp");
     emit_asm("mov rdi, 1");
     emit_asm("mov rdx, 1");
-    emit_asm("mov rax, 1");
+    emit_asm("mov rax, 0x2000004");
     emit_asm("syscall");
     emit_asm("add rsp, 8");
 }
@@ -36,7 +36,7 @@ void print_i(int i){
     emit_asm("dec rdi");
     emit_asm("mov byte [rdi], '-'");
     emit_asm(".done_sign:");
-    emit_asm("mov rax, 1");
+    emit_asm("mov rax, 0x2000004");
     emit_asm("mov rsi, rdi");
     emit_asm("lea rdx, [rsp+19]");
     emit_asm("sub rdx, rdi");

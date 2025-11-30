@@ -2,6 +2,8 @@
 // Created by Ryan Senoune on 2025-02-12.
 //
 
+#include <unordered_map>
+
 #include "reg_alloc.h"
 
 /*

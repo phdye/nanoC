@@ -3,6 +3,7 @@
 //
 
 #include "code_gen.h"
+#include "../portability/platform.h"
 
 
 void CodeGen::generate(std::shared_ptr<BasicInstruction> i) {
@@ -68,7 +69,7 @@ void CodeGen::generate(){
     }
 
     emit("section .text");
-    emit("global start");
+    emit("global " ENTRY_POINT);
 
     while (index < instructions.size()) {
         generate(curr());
@@ -76,10 +77,10 @@ void CodeGen::generate(){
     }
 
     emit("");
-    emit("start:");
+    emit(ENTRY_POINT ":");
     emit("call main");
     emit("mov rdi, rax");
-    emit("mov rax, 0x2000001");
+    emit("mov rax, " SYSCALL_EXIT);
     emit("syscall");
 
 }
