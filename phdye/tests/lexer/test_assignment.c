@@ -1,0 +1,6 @@
+/*
+=
+*/
+
+// Test assignment operator
+=
